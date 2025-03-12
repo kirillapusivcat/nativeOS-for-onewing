@@ -5,6 +5,8 @@
 #include <Adafruit_SSD1306.h>
 #include <RTClib.h>
 
+// Test Build. Open sourse build - absolutely free; build ver: 1.0 NATIVE_OS_BUDGIE_EDITION_EXPERIMENTAL status:unstable;
+
 // init
 
 #define SCREEN_WIDTH 128
