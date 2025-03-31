@@ -1,3 +1,8 @@
+/*Firmware for Onewing W1
+Open source, free in use.
+version: Native OS budgie build 1.1
+© 2025 DW Robo lab All rights reserved*/
+
 #include <Wire.h>
 #include "Arduino.h"
 #include "DFRobotDFPlayerMini.h"
@@ -5,14 +10,13 @@
 #include <Adafruit_SSD1306.h>
 #include <RTClib.h>
 
-// Test Build. Open sourse build - absolutely free; build ver: 1.0 NATIVE_OS_BUDGIE_EDITION_EXPERIMENTAL status:unstable;
-
-// init
+// display init
 
 #define SCREEN_WIDTH 128
 #define SCREEN_HEIGHT 64
 #define OLED_RESET -1
 
+// init library for DFPlayer's serial connection
 #ifdef ESP32
   #define FPSerial Serial1
 #else
@@ -24,10 +28,14 @@ DFRobotDFPlayerMini player;
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 RTC_DS3231 rtc;
 
+// keypad pins
+
 const int abtnpin = 5;
 const int bbtnpin = 4;
 const int cbtnpin = 12;
 const int dbtnpin = 14;
+
+// save keypad values
 
 int abtnact;
 int bbtnact;
@@ -35,6 +43,7 @@ int cbtnact;
 int dbtnact;
 
 // modes
+
 int Displaysts = HIGH;
 int MODE = 0;
 int APP = 0;
@@ -49,6 +58,7 @@ String rtcmonths;
 String rtcyears;
 
 // months names
+
 String month_name;
 String month_names[12]={"Jan", "Feb", "March", "April", "May", "June", "July", "Aug", "Sep", "Oct", "Nov", "Dec"};
 
@@ -62,9 +72,11 @@ int DFPlayerrd;
 
 //Apps
 
+/*experimental,  comming soon.
 void openApp(int appnum;) {
   APP = MODE
 }
+*/
 
 // bitmap imgs
 
@@ -261,7 +273,7 @@ void setup() {
     display.setCursor(0, 10);
     display.println("Welcome back!");
     display.display();
-    player.play(2);
+    player.play(3);
     delay(2000);
     display.clearDisplay();
 
@@ -312,7 +324,7 @@ void loop() {
       display.print(MODE);
       display.setTextSize(2);
       display.setCursor(32,32);
-      display.print("Blank");
+      display.print("Nothing to see here...");
       display.display();
     }
   } else if (Displaysts == LOW) {
@@ -321,7 +333,7 @@ void loop() {
   }
 
   // read keypad value
-  
+
   abtnact = digitalRead(abtnpin);
   bbtnact = digitalRead(bbtnpin);
   cbtnact = digitalRead(cbtnpin);
