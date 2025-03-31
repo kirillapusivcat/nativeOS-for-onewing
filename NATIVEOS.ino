@@ -1,6 +1,6 @@
 /*Firmware for Onewing W1
 Open source, free in use.
-version: Native OS budgie build 1.1
+version: Native OS budgie test build 1.1
 © 2025 DW Robo lab All rights reserved*/
 
 #include <Wire.h>
